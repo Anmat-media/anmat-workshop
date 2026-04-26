@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,57 +8,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#f5f5f5;font-family:'Inter',sans-serif;padding:2rem 1rem;min-height:100vh}
+  body{background:#EDE8DF;font-family:'Inter',sans-serif;padding:2rem 1rem;min-height:100vh}
   .wrap{max-width:640px;margin:0 auto}
-  .header{background:#000;border-radius:12px;padding:2.25rem 2rem 2rem;margin-bottom:1.25rem}
+  .header{background:#1B1B2F;border-radius:12px;padding:2.25rem 2rem 2rem;margin-bottom:1.25rem}
   .logo-line{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
   .logo-dot{width:26px;height:26px;border-radius:50%;background:#00E5CC;flex-shrink:0}
-  .logo-text{color:#fff;font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:1px}
+  .logo-text{color:#EDE8DF;font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:1px}
   .logo-text span{color:#00E5CC}
   .online-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,204,0.12);border:0.5px solid rgba(0,229,204,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#00E5CC;margin-bottom:1.25rem}
   .online-badge .dot{width:6px;height:6px;border-radius:50%;background:#00E5CC}
-  .header h1{color:#fff;font-family:'Archivo Black',sans-serif;font-size:22px;line-height:1.3;margin-bottom:0.75rem}
-  .header p{color:#999;font-size:14px;line-height:1.65;font-family:'Noto Naskh Arabic',serif;direction:rtl;text-align:right}
-  .section{background:#fff;border:0.5px solid #e5e5e5;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
-  .sec-title{font-size:10px;font-weight:500;color:#999;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:0.5px solid #e5e5e5}
+  .header h1{color:#EDE8DF;font-family:'Archivo Black',sans-serif;font-size:22px;line-height:1.3;margin-bottom:0.75rem}
+  .header p{color:#9997B0;font-size:14px;line-height:1.65;font-family:'Noto Naskh Arabic',serif;direction:rtl;text-align:right}
+  .section{background:#F7F3EC;border:0.5px solid #D9D2C5;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .sec-title{font-size:10px;font-weight:500;color:#7A7060;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:0.5px solid #D9D2C5}
   .field{margin-bottom:1rem}
   .field:last-child{margin-bottom:0}
-  label.lbl{display:block;font-size:13px;font-weight:500;color:#555;margin-bottom:5px}
-  label.lbl .ar{font-size:12px;color:#999;font-family:'Noto Naskh Arabic',serif}
-  input[type=text],input[type=email],select,textarea{width:100%;font-size:14px;font-family:inherit;border:0.5px solid #ddd;border-radius:8px;padding:9px 12px;background:#fff;color:#111;outline:none;transition:border-color 0.15s}
+  label.lbl{display:block;font-size:13px;font-weight:500;color:#2E2C3E;margin-bottom:5px}
+  label.lbl .ar{font-size:12px;color:#7A7060;font-family:'Noto Naskh Arabic',serif}
+  input[type=text],input[type=email],select,textarea{width:100%;font-size:14px;font-family:inherit;border:0.5px solid #C8BFB0;border-radius:8px;padding:9px 12px;background:#FDFAF5;color:#1B1B2F;outline:none;transition:border-color 0.15s}
   input:focus,select:focus,textarea:focus{border-color:#00E5CC;box-shadow:0 0 0 2px rgba(0,229,204,0.1)}
   textarea{resize:vertical;min-height:90px}
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   @media(max-width:480px){.two-col{grid-template-columns:1fr}}
   .tag-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-  .tag{display:inline-flex;align-items:center;border:0.5px solid #ddd;border-radius:4px;padding:6px 13px;font-size:12px;color:#666;cursor:pointer;transition:all 0.15s;user-select:none;line-height:1.35}
-  .tag:hover{border-color:#00E5CC;color:#111}
-  .tag.active{background:#000;border-color:#000;color:#00E5CC;font-weight:500}
+  .tag{display:inline-flex;align-items:center;border:0.5px solid #C8BFB0;border-radius:4px;padding:6px 13px;font-size:12px;color:#4A4560;cursor:pointer;transition:all 0.15s;user-select:none;line-height:1.35;background:#FDFAF5}
+  .tag:hover{border-color:#00E5CC;color:#1B1B2F}
+  .tag.active{background:#1B1B2F;border-color:#1B1B2F;color:#00E5CC;font-weight:500}
   .level-group{display:flex;gap:8px;margin-top:6px}
-  .lvl{flex:1;padding:8px 6px;border:0.5px solid #ddd;border-radius:4px;font-size:12px;text-align:center;cursor:pointer;color:#666;transition:all 0.15s;user-select:none;line-height:1.5}
+  .lvl{flex:1;padding:8px 6px;border:0.5px solid #C8BFB0;border-radius:4px;font-size:12px;text-align:center;cursor:pointer;color:#4A4560;transition:all 0.15s;user-select:none;line-height:1.5;background:#FDFAF5}
   .lvl:hover{border-color:#00E5CC}
-  .lvl.active{background:#000;border-color:#000;color:#00E5CC;font-weight:500}
+  .lvl.active{background:#1B1B2F;border-color:#1B1B2F;color:#00E5CC;font-weight:500}
   .check-item{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:10px}
   .check-item:last-child{margin-bottom:0}
   .check-item input[type=checkbox]{width:15px;height:15px;margin-top:2px;accent-color:#00E5CC;cursor:pointer;flex-shrink:0}
-  .check-label{font-size:13px;color:#111;line-height:1.4}
-  .notice-box{background:#f9f9f9;border-left:3px solid #00E5CC;border-radius:0 4px 4px 0;padding:0.85rem 1rem;margin-bottom:0.75rem}
-  .notice-num{font-size:10px;font-weight:500;color:#00E5CC;margin-bottom:4px;letter-spacing:0.5px;font-family:'Archivo Black',sans-serif}
-  .notice-text{font-size:12px;color:#666;line-height:1.6}
-  .notice-text .ar{display:block;margin-top:5px;color:#999;direction:rtl;text-align:right;font-family:'Noto Naskh Arabic',serif;font-size:13px;line-height:1.7}
-  .req{color:#00E5CC;margin-left:1px}
-  .submit-btn{width:100%;background:#000;color:#00E5CC;border:none;border-radius:4px;padding:14px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;margin-top:0.5rem;font-family:'Archivo Black',sans-serif;letter-spacing:0.5px;text-transform:uppercase}
-  .submit-btn:hover{background:#111}
+  .check-label{font-size:13px;color:#2E2C3E;line-height:1.4}
+  .notice-box{background:#EDE8DF;border-left:3px solid #00E5CC;border-radius:0 4px 4px 0;padding:0.85rem 1rem;margin-bottom:0.75rem}
+  .notice-num{font-size:10px;font-weight:500;color:#00897B;margin-bottom:4px;letter-spacing:0.5px;font-family:'Archivo Black',sans-serif}
+  .notice-text{font-size:12px;color:#4A4560;line-height:1.6}
+  .notice-text .ar{display:block;margin-top:5px;color:#7A7060;direction:rtl;text-align:right;font-family:'Noto Naskh Arabic',serif;font-size:13px;line-height:1.7}
+  .req{color:#00897B;margin-left:1px}
+  .submit-btn{width:100%;background:#1B1B2F;color:#00E5CC;border:none;border-radius:4px;padding:14px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;margin-top:0.5rem;font-family:'Archivo Black',sans-serif;letter-spacing:0.5px;text-transform:uppercase}
+  .submit-btn:hover{background:#2E2C3E}
   .submit-btn:active{transform:scale(0.99)}
   .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
-  .success{display:none;background:#000;border-radius:12px;padding:3rem 2rem;text-align:center}
+  .success{display:none;background:#1B1B2F;border-radius:12px;padding:3rem 2rem;text-align:center}
   .success.show{display:block}
   .s-icon{width:54px;height:54px;border-radius:50%;background:#00E5CC;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center}
-  .s-icon svg{width:22px;height:22px;stroke:#000;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-  .success h2{color:#fff;font-size:20px;font-weight:500;margin-bottom:0.5rem;font-family:'Archivo Black',sans-serif}
-  .success p{color:#999;font-size:13px;line-height:1.7}
+  .s-icon svg{width:22px;height:22px;stroke:#1B1B2F;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .success h2{color:#EDE8DF;font-size:20px;font-weight:500;margin-bottom:0.5rem;font-family:'Archivo Black',sans-serif}
+  .success p{color:#9997B0;font-size:13px;line-height:1.7}
   .success .cyan{color:#00E5CC;font-family:'Noto Naskh Arabic',serif;font-size:14px;line-height:1.7;display:block;margin-top:0.75rem;direction:rtl}
-  .error-msg{display:none;background:rgba(220,50,50,0.08);border:0.5px solid rgba(220,50,50,0.3);border-radius:4px;padding:10px 14px;font-size:12px;color:#c0392b;margin-top:0.75rem;text-align:center}
+  .error-msg{display:none;background:rgba(180,50,50,0.08);border:0.5px solid rgba(180,50,50,0.3);border-radius:4px;padding:10px 14px;font-size:12px;color:#a0392b;margin-top:0.75rem;text-align:center}
   .error-msg.show{display:block}
 </style>
 </head>
@@ -116,8 +117,8 @@
     <div class="field">
       <label class="lbl">Preferred language <span class="ar">| اللغة المفضلة للورشة</span><span class="req">*</span></label>
       <div class="tag-group" id="lang-group">
-        <div class="tag" data-val="arabic">Arabic / عربي</div>
-        <div class="tag" data-val="english">English / إنجليزي</div>
+        <div class="tag" data-val="Arabic">Arabic / عربي</div>
+        <div class="tag" data-val="English">English / إنجليزي</div>
       </div>
     </div>
   </div>
@@ -223,7 +224,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkJevMNKX19rdUV7XeFx0tKmg4t7QbzOfVj_OJn57XtalgIBcrRvsdkoP8u4clg2U0eA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFF-SYX7cT9f2x-3IRjgCRQU-9-DtogawkWec0ZPEKl53Z9Ms9LynBN7_b7UO8QWUHSg/exec";
 
 document.querySelectorAll('#lang-group .tag, #program-group .tag').forEach(t=>{
   t.addEventListener('click',function(){
@@ -247,7 +248,7 @@ document.getElementById('ml-already').addEventListener('change',function(){
   if(this.checked) document.getElementById('ml-yes').checked=false;
 })
 
-async function submitForm(){
+function submitForm(){
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const role = document.getElementById('role').value;
@@ -265,38 +266,36 @@ async function submitForm(){
   const mlAlready = document.getElementById('ml-already').checked;
   const mailingList = mlAlready ? 'Already subscribed' : mlYes ? 'Yes' : 'No';
 
-  const payload = {
-    name, email,
-    org: document.getElementById('org').value.trim(),
-    country: document.getElementById('country').value.trim(),
-    role,
-    language: lang.dataset.val,
-    program: prog.dataset.val,
-    level: level ? level.dataset.val : '',
-    tools,
-    idea: document.getElementById('idea').value.trim(),
-    mailingList
-  };
-
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.textContent = 'Sending...';
   document.getElementById('error-msg').classList.remove('show');
 
-  try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    });
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('org', document.getElementById('org').value.trim());
+  formData.append('country', document.getElementById('country').value.trim());
+  formData.append('role', role);
+  formData.append('language', lang.dataset.val);
+  formData.append('program', prog.dataset.val);
+  formData.append('level', level ? level.dataset.val : '');
+  formData.append('tools', tools);
+  formData.append('idea', document.getElementById('idea').value.trim());
+  formData.append('mailingList', mailingList);
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).then(function(){
     document.getElementById('form-body').style.display='none';
     document.getElementById('success-msg').classList.add('show');
-  } catch(err) {
+  }).catch(function(){
     btn.disabled = false;
     btn.textContent = 'Register interest / سجِّل اهتمامك ←';
     document.getElementById('error-msg').classList.add('show');
-  }
+  });
 }
 </script>
 </body>
