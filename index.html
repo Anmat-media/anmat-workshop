@@ -59,6 +59,7 @@
   .success .cyan{color:#00E5CC;font-family:'Noto Naskh Arabic',serif;font-size:14px;line-height:1.7;display:block;margin-top:0.75rem;direction:rtl}
   .error-msg{display:none;background:rgba(180,50,50,0.08);border:0.5px solid rgba(180,50,50,0.3);border-radius:4px;padding:10px 14px;font-size:12px;color:#a0392b;margin-top:0.75rem;text-align:center}
   .error-msg.show{display:block}
+  #other-country{display:none;margin-top:8px}
 </style>
 </head>
 <body>
@@ -86,15 +87,137 @@
         <input type="email" id="email" placeholder="you@example.com">
       </div>
     </div>
-    <div class="two-col">
-      <div class="field">
-        <label class="lbl">Organization <span class="ar">| المؤسسة</span></label>
-        <input type="text" id="org" placeholder="Newsroom, university, NGO...">
-      </div>
-      <div class="field">
-        <label class="lbl">Country <span class="ar">| البلد</span></label>
-        <input type="text" id="country" placeholder="Egypt, Jordan, Lebanon...">
-      </div>
+    <div class="field">
+      <label class="lbl">Organization <span class="ar">| المؤسسة</span></label>
+      <input type="text" id="org" placeholder="Newsroom, university, NGO...">
+    </div>
+    <div class="field">
+      <label class="lbl">Country <span class="ar">| البلد</span><span class="req">*</span></label>
+      <select id="country" onchange="handleCountry(this)">
+        <option value="">Select your country / اختر بلدك...</option>
+        <option value="Afghanistan / أفغانستان">Afghanistan / أفغانستان</option>
+        <option value="Albania / ألبانيا">Albania / ألبانيا</option>
+        <option value="Algeria / الجزائر">Algeria / الجزائر</option>
+        <option value="Angola / أنغولا">Angola / أنغولا</option>
+        <option value="Argentina / الأرجنتين">Argentina / الأرجنتين</option>
+        <option value="Australia / أستراليا">Australia / أستراليا</option>
+        <option value="Austria / النمسا">Austria / النمسا</option>
+        <option value="Azerbaijan / أذربيجان">Azerbaijan / أذربيجان</option>
+        <option value="Bahrain / البحرين">Bahrain / البحرين</option>
+        <option value="Bangladesh / بنغلاديش">Bangladesh / بنغلاديش</option>
+        <option value="Belarus / بيلاروسيا">Belarus / بيلاروسيا</option>
+        <option value="Belgium / بلجيكا">Belgium / بلجيكا</option>
+        <option value="Bolivia / بوليفيا">Bolivia / بوليفيا</option>
+        <option value="Bosnia and Herzegovina / البوسنة والهرسك">Bosnia and Herzegovina / البوسنة والهرسك</option>
+        <option value="Brazil / البرازيل">Brazil / البرازيل</option>
+        <option value="Burkina Faso / بوركينا فاسو">Burkina Faso / بوركينا فاسو</option>
+        <option value="Cameroon / الكاميرون">Cameroon / الكاميرون</option>
+        <option value="Canada / كندا">Canada / كندا</option>
+        <option value="Chad / تشاد">Chad / تشاد</option>
+        <option value="Chile / تشيلي">Chile / تشيلي</option>
+        <option value="China / الصين">China / الصين</option>
+        <option value="Colombia / كولومبيا">Colombia / كولومبيا</option>
+        <option value="Comoros / جزر القمر">Comoros / جزر القمر</option>
+        <option value="Congo / الكونغو">Congo / الكونغو</option>
+        <option value="Cuba / كوبا">Cuba / كوبا</option>
+        <option value="Czech Republic / التشيك">Czech Republic / التشيك</option>
+        <option value="Denmark / الدنمارك">Denmark / الدنمارك</option>
+        <option value="Djibouti / جيبوتي">Djibouti / جيبوتي</option>
+        <option value="DR Congo / الكونغو الديمقراطية">DR Congo / الكونغو الديمقراطية</option>
+        <option value="Ecuador / الإكوادور">Ecuador / الإكوادور</option>
+        <option value="Egypt / مصر">Egypt / مصر</option>
+        <option value="Eritrea / إريتريا">Eritrea / إريتريا</option>
+        <option value="Ethiopia / إثيوبيا">Ethiopia / إثيوبيا</option>
+        <option value="Finland / فنلندا">Finland / فنلندا</option>
+        <option value="France / فرنسا">France / فرنسا</option>
+        <option value="Germany / ألمانيا">Germany / ألمانيا</option>
+        <option value="Ghana / غانا">Ghana / غانا</option>
+        <option value="Greece / اليونان">Greece / اليونان</option>
+        <option value="Guatemala / غواتيمالا">Guatemala / غواتيمالا</option>
+        <option value="Guinea / غينيا">Guinea / غينيا</option>
+        <option value="Haiti / هايتي">Haiti / هايتي</option>
+        <option value="Honduras / هندوراس">Honduras / هندوراس</option>
+        <option value="Hungary / المجر">Hungary / المجر</option>
+        <option value="India / الهند">India / الهند</option>
+        <option value="Indonesia / إندونيسيا">Indonesia / إندونيسيا</option>
+        <option value="Iran / إيران">Iran / إيران</option>
+        <option value="Iraq / العراق">Iraq / العراق</option>
+        <option value="Ireland / أيرلندا">Ireland / أيرلندا</option>
+        <option value="Italy / إيطاليا">Italy / إيطاليا</option>
+        <option value="Ivory Coast / ساحل العاج">Ivory Coast / ساحل العاج</option>
+        <option value="Japan / اليابان">Japan / اليابان</option>
+        <option value="Jordan / الأردن">Jordan / الأردن</option>
+        <option value="Kazakhstan / كازاخستان">Kazakhstan / كازاخستان</option>
+        <option value="Kenya / كينيا">Kenya / كينيا</option>
+        <option value="Kuwait / الكويت">Kuwait / الكويت</option>
+        <option value="Kyrgyzstan / قيرغيزستان">Kyrgyzstan / قيرغيزستان</option>
+        <option value="Lebanon / لبنان">Lebanon / لبنان</option>
+        <option value="Libya / ليبيا">Libya / ليبيا</option>
+        <option value="Madagascar / مدغشقر">Madagascar / مدغشقر</option>
+        <option value="Malaysia / ماليزيا">Malaysia / ماليزيا</option>
+        <option value="Mali / مالي">Mali / مالي</option>
+        <option value="Mauritania / موريتانيا">Mauritania / موريتانيا</option>
+        <option value="Mexico / المكسيك">Mexico / المكسيك</option>
+        <option value="Morocco / المغرب">Morocco / المغرب</option>
+        <option value="Mozambique / موزمبيق">Mozambique / موزمبيق</option>
+        <option value="Myanmar / ميانمار">Myanmar / ميانمار</option>
+        <option value="Nepal / نيبال">Nepal / نيبال</option>
+        <option value="Netherlands / هولندا">Netherlands / هولندا</option>
+        <option value="Nicaragua / نيكاراغوا">Nicaragua / نيكاراغوا</option>
+        <option value="Niger / النيجر">Niger / النيجر</option>
+        <option value="Nigeria / نيجيريا">Nigeria / نيجيريا</option>
+        <option value="New Zealand / نيوزيلندا">New Zealand / نيوزيلندا</option>
+        <option value="Nicaragua / نيكاراغوا">Nicaragua / نيكاراغوا</option>
+        <option value="Niger / النيجر">Niger / النيجر</option>
+        <option value="Nigeria / نيجيريا">Nigeria / نيجيريا</option>
+        <option value="North Korea / كوريا الشمالية">North Korea / كوريا الشمالية</option>
+        <option value="Norway / النرويج">Norway / النرويج</option>
+        <option value="Oman / عُمان">Oman / عُمان</option>
+        <option value="Pakistan / باكستان">Pakistan / باكستان</option>
+        <option value="Palestine / فلسطين">Palestine / فلسطين</option>
+        <option value="Panama / بنما">Panama / بنما</option>
+        <option value="Peru / بيرو">Peru / بيرو</option>
+        <option value="Philippines / الفلبين">Philippines / الفلبين</option>
+        <option value="Poland / بولندا">Poland / بولندا</option>
+        <option value="Portugal / البرتغال">Portugal / البرتغال</option>
+        <option value="Qatar / قطر">Qatar / قطر</option>
+        <option value="Romania / رومانيا">Romania / رومانيا</option>
+        <option value="Russia / روسيا">Russia / روسيا</option>
+        <option value="Rwanda / رواندا">Rwanda / رواندا</option>
+        <option value="Saudi Arabia / المملكة العربية السعودية">Saudi Arabia / المملكة العربية السعودية</option>
+        <option value="Senegal / السنغال">Senegal / السنغال</option>
+        <option value="Serbia / صربيا">Serbia / صربيا</option>
+        <option value="Sierra Leone / سيراليون">Sierra Leone / سيراليون</option>
+        <option value="Somalia / الصومال">Somalia / الصومال</option>
+        <option value="South Africa / جنوب أفريقيا">South Africa / جنوب أفريقيا</option>
+        <option value="South Korea / كوريا الجنوبية">South Korea / كوريا الجنوبية</option>
+        <option value="South Sudan / جنوب السودان">South Sudan / جنوب السودان</option>
+        <option value="Spain / إسبانيا">Spain / إسبانيا</option>
+        <option value="Sri Lanka / سريلانكا">Sri Lanka / سريلانكا</option>
+        <option value="Sudan / السودان">Sudan / السودان</option>
+        <option value="Sweden / السويد">Sweden / السويد</option>
+        <option value="Switzerland / سويسرا">Switzerland / سويسرا</option>
+        <option value="Syria / سوريا">Syria / سوريا</option>
+        <option value="Tajikistan / طاجيكستان">Tajikistan / طاجيكستان</option>
+        <option value="Tanzania / تنزانيا">Tanzania / تنزانيا</option>
+        <option value="Thailand / تايلاند">Thailand / تايلاند</option>
+        <option value="Tunisia / تونس">Tunisia / تونس</option>
+        <option value="Turkey / تركيا">Turkey / تركيا</option>
+        <option value="Turkmenistan / تركمانستان">Turkmenistan / تركمانستان</option>
+        <option value="UAE / الإمارات العربية المتحدة">UAE / الإمارات العربية المتحدة</option>
+        <option value="Uganda / أوغندا">Uganda / أوغندا</option>
+        <option value="UK / المملكة المتحدة">UK / المملكة المتحدة</option>
+        <option value="Ukraine / أوكرانيا">Ukraine / أوكرانيا</option>
+        <option value="USA / الولايات المتحدة الأمريكية">USA / الولايات المتحدة الأمريكية</option>
+        <option value="Uzbekistan / أوزبكستان">Uzbekistan / أوزبكستان</option>
+        <option value="Venezuela / فنزويلا">Venezuela / فنزويلا</option>
+        <option value="Vietnam / فيتنام">Vietnam / فيتنام</option>
+        <option value="Yemen / اليمن">Yemen / اليمن</option>
+        <option value="Zambia / زامبيا">Zambia / زامبيا</option>
+        <option value="Zimbabwe / زيمبابوي">Zimbabwe / زيمبابوي</option>
+        <option value="Other / أخرى">Other / أخرى</option>
+      </select>
+      <input type="text" id="other-country" placeholder="Please specify / يرجى التحديد">
     </div>
     <div class="field">
       <label class="lbl">Role <span class="ar">| الدور المهني</span><span class="req">*</span></label>
@@ -178,21 +301,21 @@
   <div class="section">
     <div class="sec-title">Before you submit / قبل الإرسال</div>
     <div class="notice-box">
-      <div class="notice-num">01 — Scheduling</div>
+      <div class="notice-num">01 — Scheduling / المواعيد</div>
       <div class="notice-text">
         We propose two session dates once we have enough registrants. Details and the link will be sent to your email, so make sure it is active.
         <span class="ar">نُحدِّد موعدَين مقترحَين للورشة حين يتوفر عدد كافٍ من المسجَّلين. تُرسَل التفاصيل والرابط إلى بريدك الإلكتروني، لذا تأكد من أنه فعَّال.</span>
       </div>
     </div>
     <div class="notice-box">
-      <div class="notice-num">02 — Editorial independence</div>
+      <div class="notice-num">02 — Editorial independence / الاستقلالية التحريرية</div>
       <div class="notice-text">
         We provide technical support and access to our datasets. Your story is yours — build it with your editor and publish it wherever you choose, with no involvement from us.
         <span class="ar">نُقدِّم الدعم التقني والوصول إلى البيانات. قصتك ملكك؛ تبنيها مع محررك وتنشرها في الوسيلة التي تختارها دون أي تدخل منا.</span>
       </div>
     </div>
     <div class="notice-box" style="margin-bottom:1rem">
-      <div class="notice-num">03 — Mailing list</div>
+      <div class="notice-num">03 — Mailing list / القائمة البريدية</div>
       <div class="notice-text">
         Would you like to receive Anmat updates on new projects and opportunities?
         <span class="ar">هل تودّ استقبال تحديثات أنماط حول المشاريع الجديدة والفرص المتاحة؟</span>
@@ -205,6 +328,10 @@
     <div class="check-item">
       <input type="checkbox" id="ml-already">
       <label class="check-label" for="ml-already">I am already subscribed / أنا مشترك بالفعل</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="ml-no">
+      <label class="check-label" for="ml-no">No, I do not wish to subscribe / لا أرغب في الاشتراك</label>
     </div>
   </div>
 
@@ -225,6 +352,11 @@
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFF-SYX7cT9f2x-3IRjgCRQU-9-DtogawkWec0ZPEKl53Z9Ms9LynBN7_b7UO8QWUHSg/exec";
 
+function handleCountry(sel) {
+  const other = document.getElementById('other-country');
+  other.style.display = sel.value === 'Other / أخرى' ? 'block' : 'none';
+}
+
 document.querySelectorAll('#lang-group .tag, #program-group .tag').forEach(t=>{
   t.addEventListener('click',function(){
     this.parentElement.querySelectorAll('.tag').forEach(x=>x.classList.remove('active'));
@@ -241,10 +373,13 @@ document.querySelectorAll('.lvl').forEach(b=>{
   })
 })
 document.getElementById('ml-yes').addEventListener('change',function(){
-  if(this.checked) document.getElementById('ml-already').checked=false;
+  if(this.checked){ document.getElementById('ml-already').checked=false; document.getElementById('ml-no').checked=false; }
 })
 document.getElementById('ml-already').addEventListener('change',function(){
-  if(this.checked) document.getElementById('ml-yes').checked=false;
+  if(this.checked){ document.getElementById('ml-yes').checked=false; document.getElementById('ml-no').checked=false; }
+})
+document.getElementById('ml-no').addEventListener('change',function(){
+  if(this.checked){ document.getElementById('ml-yes').checked=false; document.getElementById('ml-already').checked=false; }
 })
 
 function submitForm(){
@@ -253,8 +388,14 @@ function submitForm(){
   const role = document.getElementById('role').value;
   const lang = document.querySelector('#lang-group .tag.active');
   const prog = document.querySelector('#program-group .tag.active');
+  const countryEl = document.getElementById('country');
+  let country = countryEl.value;
+  if(country === 'Other / أخرى') {
+    const other = document.getElementById('other-country').value.trim();
+    country = other ? 'Other: ' + other : 'Other';
+  }
 
-  if(!name||!email||!role||!lang||!prog){
+  if(!name||!email||!role||!lang||!prog||!country){
     alert('Please fill in all required fields (*).\nيرجى استكمال جميع الحقول الإلزامية (*).');
     return;
   }
@@ -263,7 +404,8 @@ function submitForm(){
   const level = document.querySelector('.lvl.active');
   const mlYes = document.getElementById('ml-yes').checked;
   const mlAlready = document.getElementById('ml-already').checked;
-  const mailingList = mlAlready ? 'Already subscribed' : mlYes ? 'Yes' : 'No';
+  const mlNo = document.getElementById('ml-no').checked;
+  const mailingList = mlAlready ? 'Already subscribed' : mlYes ? 'Yes' : mlNo ? 'No' : 'No response';
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
@@ -274,7 +416,7 @@ function submitForm(){
   formData.append('name', name);
   formData.append('email', email);
   formData.append('org', document.getElementById('org').value.trim());
-  formData.append('country', document.getElementById('country').value.trim());
+  formData.append('country', country);
   formData.append('role', role);
   formData.append('language', lang.dataset.val);
   formData.append('program', prog.dataset.val);
