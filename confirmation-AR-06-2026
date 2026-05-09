@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تأكيد الحضور — ورشة أنماط</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#EDE8DF;font-family:'Noto Naskh Arabic',serif;padding:2rem 1rem;min-height:100vh;direction:rtl}
+  .wrap{max-width:640px;margin:0 auto}
+  .header{background:#1B1B2F;border-radius:12px;padding:2.25rem 2rem 2rem;margin-bottom:1.25rem}
+  .logo-line{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+  .logo-dot{width:26px;height:26px;border-radius:50%;background:#00E5CC;flex-shrink:0}
+  .logo-text{color:#EDE8DF;font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:1px;direction:ltr}
+  .logo-text span{color:#00E5CC}
+  .online-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,204,0.12);border:0.5px solid rgba(0,229,204,0.35);border-radius:20px;padding:4px 12px;font-size:11px;color:#00E5CC;margin-bottom:1.25rem;font-family:'Noto Naskh Arabic',serif}
+  .online-badge .dot{width:6px;height:6px;border-radius:50%;background:#00E5CC;flex-shrink:0}
+  .header h1{color:#EDE8DF;font-family:'Noto Naskh Arabic',serif;font-size:20px;font-weight:700;line-height:1.4;margin-bottom:0.5rem}
+  .header h2{color:#00E5CC;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:0.5px;margin-bottom:1.25rem;direction:ltr}
+ 
+  .info-block{border-top:0.5px solid rgba(255,255,255,0.1);padding-top:1rem;margin-top:0.75rem}
+  .info-block h3{color:#00E5CC;font-size:12px;font-family:'Archivo Black',sans-serif;letter-spacing:0.5px;margin-bottom:0.75rem;direction:ltr}
+  .dates{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
+  .date-item{background:rgba(0,229,204,0.06);border:0.5px solid rgba(0,229,204,0.2);border-radius:6px;padding:8px 12px}
+  .date-item .d{color:#EDE8DF;font-size:13px;font-weight:700}
+  .date-item .t{color:#9997B0;font-size:11px;margin-top:2px}
+  .agenda{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
+  .agenda-item{display:flex;gap:10px;align-items:flex-start}
+  .agenda-num{background:#00E5CC;color:#1B1B2F;font-size:10px;font-family:'Archivo Black',sans-serif;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .agenda-text{color:#9997B0;font-size:12px;line-height:1.6}
+  .notice{background:rgba(0,229,204,0.06);border-right:3px solid #00E5CC;border-radius:4px 0 0 4px;padding:0.75rem 1rem;margin-top:0.75rem}
+  .notice-text{font-size:11px;color:#9997B0;line-height:1.6}
+ 
+  .section{background:#F7F3EC;border:0.5px solid #D9D2C5;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+  .sec-title{font-size:10px;font-weight:700;color:#7A7060;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:0.5px solid #D9D2C5;font-family:'Archivo Black',sans-serif;direction:ltr}
+  .field{margin-bottom:1rem}
+  .field:last-child{margin-bottom:0}
+  label.lbl{display:block;font-size:14px;font-weight:700;color:#2E2C3E;margin-bottom:5px}
+  .hint{font-size:11px;color:#7A7060;margin-bottom:6px;line-height:1.5}
+  input[type=text],input[type=email],input[type=tel]{width:100%;font-size:14px;font-family:'Noto Naskh Arabic',serif;border:0.5px solid #C8BFB0;border-radius:8px;padding:9px 12px;background:#FDFAF5;color:#1B1B2F;outline:none;transition:border-color 0.15s;direction:rtl}
+  input:focus{border-color:#00E5CC;box-shadow:0 0 0 2px rgba(0,229,204,0.1)}
+  .req{color:#00E5CC;margin-right:1px}
+  .tag-group{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .tag{display:flex;align-items:flex-start;gap:10px;border:0.5px solid #C8BFB0;border-radius:8px;padding:10px 14px;font-size:13px;color:#4A4560;cursor:pointer;transition:all 0.15s;user-select:none;line-height:1.4;background:#FDFAF5}
+  .tag:hover{border-color:#00E5CC;color:#1B1B2F}
+  .tag.active{background:#1B1B2F;border-color:#1B1B2F;color:#EDE8DF}
+  .tag.active .tag-icon{color:#00E5CC}
+  .tag-icon{font-size:18px;flex-shrink:0}
+  .tag-content .tag-title{font-weight:700;margin-bottom:2px}
+  .tag-content .tag-sub{font-size:11px;opacity:0.7}
+  .check-item{display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:8px}
+  .check-item:last-child{margin-bottom:0}
+  .check-item input[type=checkbox]{width:15px;height:15px;margin-top:3px;accent-color:#00E5CC;cursor:pointer;flex-shrink:0}
+  .check-label{font-size:13px;color:#2E2C3E;line-height:1.5}
+  .submit-btn{width:100%;background:#1B1B2F;color:#00E5CC;border:none;border-radius:4px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.15s;margin-top:0.5rem;font-family:'Noto Naskh Arabic',serif;letter-spacing:0.5px}
+  .submit-btn:hover{background:#2E2C3E}
+  .submit-btn:active{transform:scale(0.99)}
+  .submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+  .success{display:none;background:#1B1B2F;border-radius:12px;padding:3rem 2rem;text-align:center}
+  .success.show{display:block}
+  .s-icon{width:54px;height:54px;border-radius:50%;background:#00E5CC;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center}
+  .s-icon svg{width:22px;height:22px;stroke:#1B1B2F;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .success h2{color:#EDE8DF;font-size:20px;font-weight:700;margin-bottom:0.5rem;font-family:'Noto Naskh Arabic',serif}
+  .success p{color:#9997B0;font-size:13px;line-height:1.7}
+  .error-msg{display:none;background:rgba(180,50,50,0.08);border:0.5px solid rgba(180,50,50,0.3);border-radius:4px;padding:10px 14px;font-size:12px;color:#a0392b;margin-top:0.75rem;text-align:center}
+  .error-msg.show{display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+ 
+<div class="header">
+  <div class="logo-line">
+    <div class="logo-dot"></div>
+    <div class="logo-text"><span>ANMAT</span> | أنماط</div>
+  </div>
+  <div class="online-badge"><span class="dot"></span> ورشة أونلاين</div>
+  <h2>Using Anmat's Datasets to Build Stories on Media Framing</h2>
+  <h1>تأكيد الحضور</h1>
+ 
+  <div class="info-block">
+    <h3>Workshop Dates</h3>
+    <div class="dates">
+      <div class="date-item">
+        <div class="d">السبت والأحد، 13 و14 يونيو 2026</div>
+        <div class="t">من 6:00 إلى 8:00 مساءً بتوقيت القاهرة</div>
+      </div>
+      <div class="date-item">
+        <div class="d">السبت والأحد، 20 و21 يونيو 2026</div>
+        <div class="t">من 6:00 إلى 8:00 مساءً بتوقيت القاهرة</div>
+      </div>
+    </div>
+ 
+    <h3>Program</h3>
+    <div class="agenda">
+      <div class="agenda-item">
+        <div class="agenda-num">1</div>
+        <div class="agenda-text">مقدمة عن أنماط وقواعد بياناتها، تحليل القواعد الترابطية، اضطراب المعلومات وأنواعه، منهجية التحقق وعلاقتها بالعمل التحقيقي، والعناصر الأساسية في قواعد البيانات.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">2</div>
+        <div class="agenda-text">رسم السياق حول الأنماط، البحث المتقدم والبحث العكسي عن الصور، البحث عن الأشخاص، تحديد المواقع الجغرافية، وتدريب جامع على بناء زاوية قصة مدفوعة بالبيانات.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">3</div>
+        <div class="agenda-text">متى يفشل الذكاء الاصطناعي، التزييف العميق والمحتوى المولد، البيانات الوصفية ومدى موثوقيتها، والأرشفة وتطبيقاتها.</div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">4</div>
+        <div class="agenda-text">حقيبة أدوات OSINT مع تطبيق عملي، توظيف كل ما سبق في تحقيق فعلي، مثال تطبيقي، وعصف ذهني حول قصص يمكن بناؤها من قواعد بيانات أنماط.</div>
+      </div>
+    </div>
+ 
+    <div class="notice">
+      <div class="notice-text">نحترم تماماً أن بعضكم قد لا يناسبه الموعد، ولذلك لن نرسل تذكيرات لمن لا يسجّل تأكيده. من يرغب في الإخطار بموعد بديل، يمكنه تحديد ذلك أدناه.</div>
+    </div>
+  </div>
+</div>
+ 
+<div id="form-body">
+  <div class="section">
+    <div class="sec-title">البيانات الشخصية</div>
+    <div class="field">
+      <label class="lbl">الاسم الكامل<span class="req">*</span></label>
+      <input type="text" id="name" placeholder="اكتب اسمك الكامل">
+    </div>
+    <div class="field">
+      <label class="lbl">البريد الإلكتروني<span class="req">*</span></label>
+      <div class="hint">يجب أن يكون نفس الإيميل الذي سجّلت به اهتمامك بالورشة.</div>
+      <input type="email" id="email" placeholder="example@email.com" style="direction:ltr">
+    </div>
+    <div class="field">
+      <label class="lbl">رقم هاتفك أو اسم المستخدم على Signal<span class="req">*</span></label>
+      <div class="hint">يُستخدم لإضافتك إلى مجموعة التنسيق الخاصة بالورشة.</div>
+      <input type="text" id="signal" placeholder="+20xxxxxxxxxx أو @username">
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="sec-title">تأكيد المشاركة</div>
+    <div class="field">
+      <label class="lbl">ما الذي ينطبق عليك؟<span class="req">*</span></label>
+      <div class="tag-group" id="attendance-group">
+        <div class="tag" data-val="confirmed" onclick="selectTag(this,'attendance-group')">
+          <span class="tag-icon">✓</span>
+          <div class="tag-content">
+            <div class="tag-title">أؤكد حضوري في الموعد المحدد</div>
+            <div class="tag-sub">13–14 و20–21 يونيو 2026، من 6:00 إلى 8:00 مساءً بتوقيت القاهرة</div>
+          </div>
+        </div>
+        <div class="tag" data-val="notify" onclick="selectTag(this,'attendance-group')">
+          <span class="tag-icon">◷</span>
+          <div class="tag-content">
+            <div class="tag-title">الموعد لا يناسبني، أرجو إبلاغي بموعد بديل</div>
+            <div class="tag-sub">سنتواصل معك حين تتوفر دورة جديدة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="section">
+    <div class="sec-title">قبل الورشة</div>
+    <div class="field">
+      <label class="lbl">تأكيد المتطلبات التقنية</label>
+      <div class="hint">يُرجى التأكد من الآتي قبل بدء الورشة.</div>
+      <div class="check-item">
+        <input type="checkbox" id="laptop">
+        <label class="check-label" for="laptop">سأشارك من جهاز لاب توب وليس الهاتف.</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="kaggle">
+        <label class="check-label" for="kaggle">لديّ حساب على منصة Kaggle أو سأنشئ حساباً قبل الورشة على <span style="direction:ltr;display:inline-block">kaggle.com</span></label>
+      </div>
+    </div>
+  </div>
+ 
+  <button class="submit-btn" id="submit-btn" onclick="submitForm()">تأكيد المشاركة ←</button>
+  <div class="error-msg" id="error-msg">حدث خطأ. يُرجى المحاولة مرة أخرى أو التواصل معنا عبر info@anmat.media</div>
+</div>
+ 
+<div class="success" id="success-msg">
+  <div class="s-icon">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h2>شكراً لك!</h2>
+  <p>تلقّينا تأكيدك. سنرسل إليك تفاصيل الورشة ورابط الجلسة قريباً.</p>
+</div>
+ 
+</div>
+ 
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwqU8tz9lg1s39wR0frB8feaD6KqlZsx7mprOXC5X2AzQjPlnQAjl8E_8D0GX0ckbqzg/exec";
+ 
+function selectTag(el, groupId){
+  document.querySelectorAll('#'+groupId+' .tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+ 
+function submitForm(){
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const signal = document.getElementById('signal').value.trim();
+  const attendance = document.querySelector('#attendance-group .tag.active');
+ 
+  if(!name||!email||!signal||!attendance){
+    alert('يُرجى استكمال جميع الحقول الإلزامية (*).');
+    return;
+  }
+ 
+  const laptop = document.getElementById('laptop').checked;
+  const kaggle = document.getElementById('kaggle').checked;
+ 
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'جارٍ الإرسال...';
+  document.getElementById('error-msg').classList.remove('show');
+ 
+  const formData = new FormData();
+  formData.append('form_type', 'confirmation');
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('signal', signal);
+  formData.append('attendance', attendance.dataset.val);
+  formData.append('laptop', laptop ? 'نعم' : 'لا');
+  formData.append('kaggle', kaggle ? 'نعم' : 'لا');
+ 
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).then(function(){
+    document.getElementById('form-body').style.display='none';
+    document.getElementById('success-msg').classList.add('show');
+  }).catch(function(){
+    btn.disabled = false;
+    btn.textContent = 'تأكيد المشاركة ←';
+    document.getElementById('error-msg').classList.add('show');
+  });
+}
+</script>
+</body>
+</html>
