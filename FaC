@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anmat Workshop — تقييم الورشة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #EDE8DF;
+    --bg-card:  #F7F3EC;
+    --navy:     #1B1B2F;
+    --cyan:     #00E5CC;
+    --cyan-dim: rgba(0,229,204,0.12);
+    --muted:    rgba(27,27,47,0.45);
+    --border:   rgba(27,27,47,0.14);
+    --radius:   12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--navy);
+    font-family: 'Noto Naskh Arabic', serif;
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+  }
+
+  /* ─── Header ─── */
+  .header {
+    max-width: 680px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .wordmark {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .wordmark::before,
+  .wordmark::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .header h1 {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .header p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ─── Decorative corner marks ─── */
+  .corners {
+    position: relative;
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+  }
+  .corners::before,
+  .corners::after,
+  .corners span::before,
+  .corners span::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: var(--cyan);
+    border-style: solid;
+  }
+  .corners::before     { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .corners::after      { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+  .corners span::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .corners span::after  { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+
+  /* ─── Form ─── */
+  .form {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ─── Section ─── */
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+  }
+
+  .section-label {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cyan-dim);
+  }
+
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  /* ─── Field ─── */
+  .field { margin-bottom: 18px; }
+  .field:last-child { margin-bottom: 0; }
+
+  .field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+
+  .field .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 14px;
+    color: var(--navy);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px var(--cyan-dim);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 96px;
+    line-height: 1.7;
+  }
+
+  /* ─── Star rating ─── */
+  .stars {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+
+  .stars input { display: none; }
+
+  .stars label {
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--border);
+    transition: color 0.15s;
+    margin-bottom: 0;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .stars input:checked ~ label,
+  .stars label:hover,
+  .stars label:hover ~ label {
+    color: var(--cyan);
+  }
+
+  /* ─── Radio / Checkbox grid ─── */
+  .radio-group,
+  .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .radio-group label,
+  .check-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    transition: border-color 0.15s, background 0.15s;
+    margin-bottom: 0;
+  }
+
+  .radio-group label:hover,
+  .check-group label:hover {
+    border-color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+
+  .radio-group input[type="radio"],
+  .check-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    accent-color: var(--cyan);
+    cursor: pointer;
+  }
+
+  /* ─── Rating row (stars + label) ─── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .rating-row:last-child { border-bottom: none; }
+
+  .rating-row .rating-label {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  /* ─── Testimonial box ─── */
+  .testimonial-wrap {
+    position: relative;
+  }
+  .testimonial-wrap::before {
+    content: '"';
+    position: absolute;
+    top: -8px;
+    right: 14px;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--cyan);
+    opacity: 0.4;
+    font-family: Georgia, serif;
+    pointer-events: none;
+  }
+
+  /* ─── Submit ─── */
+  .submit-wrap {
+    text-align: center;
+    padding-top: 8px;
+  }
+
+  button[type="submit"] {
+    background: var(--navy);
+    color: #fff;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 48px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  button[type="submit"]:hover { background: #2a2a4a; }
+  button[type="submit"]:active { transform: scale(0.98); }
+
+  .submit-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* ─── Success ─── */
+  #success {
+    display: none;
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 56px 32px;
+    text-align: center;
+  }
+  #success .icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+  #success h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  #success p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ─── Divider ─── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+
+
+  .scale-hint {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    padding: 0 2px;
+  }
+  /* ─── Responsive ─── */
+  @media (max-width: 500px) {
+    .section { padding: 20px 16px 18px; }
+    .rating-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wordmark">ANMAT | أنماط</div>
+  <div class="corners"><span></span>
+    <h1>تقييم ورشة</h1>
+  </div>
+  <p>استخدام قواعد بيانات أنماط في صناعة قصص حول التأطير الإعلامي</p>
+</div>
+
+<form class="form" id="evalForm">
+
+  <!-- 01 — Identity -->
+  <div class="section">
+    <div class="section-label">01 — هويتك</div>
+
+    <div class="field">
+      <label>الاسم الكامل *</label>
+      <input type="text" name="full_name" placeholder="الاسم كما هو في سجلاتنا" required>
+    </div>
+
+    <div class="field">
+      <label>الاسم كما تحب أن يظهر في الشهادة *</label>
+      <div class="hint">اكتبه بالشكل الذي تريده تماماً، هذا هو ما سيُطبع.</div>
+      <input type="text" name="cert_name" placeholder="مثال: هاجر هشام مصطفى" required>
+    </div>
+
+    <div class="field">
+      <label>البريد الإلكتروني *</label>
+      <input type="email" name="email" placeholder="your@email.com" required>
+    </div>
+
+    <div class="field">
+      <label>تاريخ آخر جلسة *</label>
+      <input type="date" name="date_last" required>
+    </div>
+  </div>
+
+  <!-- 02 — Session ratings -->
+  <div class="section">
+    <div class="section-label">02 — تقييم الجلسات</div>
+    <div class="section-title">كيف تقيّم كل جلسة؟</div>
+
+    <div class="scale-hint">
+        <span>ضعيف ★</span>
+        <span>ممتاز ★★★★★</span>
+      </div>
+    <div class="field">
+      <div class="rating-row">
+        <span class="rating-label">الجلسة الأولى</span>
+        <div class="stars">
+          <input type="radio" name="session_1" id="s1-5" value="5"><label for="s1-5">★</label>
+          <input type="radio" name="session_1" id="s1-4" value="4"><label for="s1-4">★</label>
+          <input type="radio" name="session_1" id="s1-3" value="3"><label for="s1-3">★</label>
+          <input type="radio" name="session_1" id="s1-2" value="2"><label for="s1-2">★</label>
+          <input type="radio" name="session_1" id="s1-1" value="1"><label for="s1-1">★</label>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span class="rating-label">الجلسة الثانية</span>
+        <div class="stars">
+          <input type="radio" name="session_2" id="s2-5" value="5"><label for="s2-5">★</label>
+          <input type="radio" name="session_2" id="s2-4" value="4"><label for="s2-4">★</label>
+          <input type="radio" name="session_2" id="s2-3" value="3"><label for="s2-3">★</label>
+          <input type="radio" name="session_2" id="s2-2" value="2"><label for="s2-2">★</label>
+          <input type="radio" name="session_2" id="s2-1" value="1"><label for="s2-1">★</label>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span class="rating-label">الجلسة الثالثة</span>
+        <div class="stars">
+          <input type="radio" name="session_3" id="s3-5" value="5"><label for="s3-5">★</label>
+          <input type="radio" name="session_3" id="s3-4" value="4"><label for="s3-4">★</label>
+          <input type="radio" name="session_3" id="s3-3" value="3"><label for="s3-3">★</label>
+          <input type="radio" name="session_3" id="s3-2" value="2"><label for="s3-2">★</label>
+          <input type="radio" name="session_3" id="s3-1" value="1"><label for="s3-1">★</label>
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <span class="rating-label">الجلسة الرابعة</span>
+        <div class="stars">
+          <input type="radio" name="session_4" id="s4-5" value="5"><label for="s4-5">★</label>
+          <input type="radio" name="session_4" id="s4-4" value="4"><label for="s4-4">★</label>
+          <input type="radio" name="session_4" id="s4-3" value="3"><label for="s4-3">★</label>
+          <input type="radio" name="session_4" id="s4-2" value="2"><label for="s4-2">★</label>
+          <input type="radio" name="session_4" id="s4-1" value="1"><label for="s4-1">★</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 — Facilitators -->
+  <div class="section">
+    <div class="section-label">03 — تقييم المدربَين</div>
+
+    <div class="field">
+      <div class="scale-hint" style="margin-bottom: 8px;">
+        <span>ضعيف ★</span>
+        <span>ممتاز ★★★★★</span>
+      </div>
+      <label>هاجر هشام: مؤسِّسة أنماط</label>
+      <div class="stars" style="justify-content: flex-start; margin-top: 8px;">
+        <input type="radio" name="rating_hager" id="h5" value="5"><label for="h5">★</label>
+        <input type="radio" name="rating_hager" id="h4" value="4"><label for="h4">★</label>
+        <input type="radio" name="rating_hager" id="h3" value="3"><label for="h3">★</label>
+        <input type="radio" name="rating_hager" id="h2" value="2"><label for="h2">★</label>
+        <input type="radio" name="rating_hager" id="h1" value="1"><label for="h1">★</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field" style="margin-top: 16px;">
+      <label>براء المعاني: مستشار مصداقية وسلامة المعلومات</label>
+      <div class="stars" style="justify-content: flex-start; margin-top: 8px;">
+        <input type="radio" name="rating_baraa" id="b5" value="5"><label for="b5">★</label>
+        <input type="radio" name="rating_baraa" id="b4" value="4"><label for="b4">★</label>
+        <input type="radio" name="rating_baraa" id="b3" value="3"><label for="b3">★</label>
+        <input type="radio" name="rating_baraa" id="b2" value="2"><label for="b2">★</label>
+        <input type="radio" name="rating_baraa" id="b1" value="1"><label for="b1">★</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 — Impact -->
+  <div class="section">
+    <div class="section-label">04 — الأثر</div>
+
+    <div class="field">
+      <label>أكثر موضوع استفدت منه <span style="font-weight:400;color:var(--muted);font-size:12px;">يمكن اختيار أكثر من إجابة</span></label>
+      <div class="check-group">
+        <label><input type="checkbox" name="top_benefit" value="datasets"> قراءة قواعد البيانات والتنقل فيها</label>
+        <label><input type="checkbox" name="top_benefit" value="arm"> فهم تحليل القواعد الترابطية (ARM)</label>
+        <label><input type="checkbox" name="top_benefit" value="angles"> بناء زوايا قصصية مدفوعة بالبيانات</label>
+        <label><input type="checkbox" name="top_benefit" value="verification_methods"> منهجيات وأدوات التحقق من المعلومات</label>
+        <label><input type="checkbox" name="top_benefit" value="verification"> أساليب التحقق باستخدام المصادر المفتوحة</label>
+        <label><input type="checkbox" name="top_benefit" value="genai"> الذكاء الاصطناعي التوليدي واستخداماته في رسم سياق في التحقق</label>
+        <label><input type="checkbox" name="top_benefit" value="other"> غير ذلك</label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top: 20px;">
+      <label>كيف تنوي استخدام ما تعلمته؟</label>
+      <div class="radio-group">
+        <label><input type="radio" name="usage" value="story"> العمل على قصة أو تحقيق بالفعل</label>
+        <label><input type="radio" name="usage" value="research"> دمجه في بحث أكاديمي</label>
+        <label><input type="radio" name="usage" value="future"> أخطط لاستخدامه لاحقاً</label>
+        <label><input type="radio" name="usage" value="unsure"> لا أزال أفكر</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 — Development -->
+  <div class="section">
+    <div class="section-label">05 — تطوير الورشة</div>
+
+    <div class="field">
+      <label>كيف ترى إمكانية تطوير الورشة مستقبلاً؟</label>
+      <div class="hint">
+        نرحب بأي ملاحظة، سواء كانت اقتراحاً للتحسين، أو إضافة محتوى جديد، أو تعديلاً في الشكل، أو أي إصلاح ترى ضرورته.
+        <br><br>
+        <strong>هذه الخانة خاصة تماماً ولن تُنشر.</strong> شاركنا برأيك بحرية.
+      </div>
+      <textarea name="development" placeholder="اكتب ملاحظتك هنا…"></textarea>
+    </div>
+  </div>
+
+  <!-- 06 — Testimonial -->
+  <div class="section">
+    <div class="section-label">06 — توصية أو استشهاد</div>
+    <div class="hint" style="margin-bottom: 16px;">
+      هذا القسم مخصص أساساً لمنصات التواصل الاجتماعي والمواد الترويجية، وقد نستخدم ما تكتبه مع نسبه إليك.
+      <br>إذا كتبت أي شيء هنا، لا بد من تعبئة الاسم والتوصيف الوظيفي.
+    </div>
+
+    <div class="field">
+      <label>التوصية</label>
+      <div class="testimonial-wrap">
+        <textarea name="testimonial" id="testimonialText" placeholder="شاركنا رأيك…" style="min-height: 110px;"></textarea>
+      </div>
+    </div>
+
+    <div class="field" id="testimonialMeta" style="display:none;">
+      <div class="field">
+        <label>الاسم للنسب *</label>
+        <input type="text" name="testimonial_name" id="testimonial_name" placeholder="الاسم الذي تريد ظهوره">
+      </div>
+      <div class="field" style="margin-top:12px;">
+        <label>التوصيف الوظيفي *</label>
+        <input type="text" name="testimonial_title" id="testimonial_title" placeholder="مثال: صحفية بيانات، صحيفة المنصة">
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-wrap">
+    <button type="submit">إرسال التقييم ←</button>
+    <p class="submit-note">تُحفظ إجاباتك بشكل آمن. لن نشارك بياناتك مع أي طرف ثالث.</p>
+  </div>
+
+</form>
+
+<!-- Success message -->
+<div id="success">
+  <div class="icon">✦</div>
+  <h2>شكراً لك!</h2>
+  <p>وصلنا تقييمك. نقدّر وقتك وملاحظاتك، ستساعدنا في تطوير الورشة للدورات القادمة.</p>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwqU8tz9lg1s39wR0frB8feaD6KqlZsx7mprOXC5X2AzQjPlnQAjl8E_8D0GX0ckbqzg/exec';
+
+// Show/hide testimonial name+title when testimonial text is filled
+document.getElementById('testimonialText').addEventListener('input', function() {
+  const meta = document.getElementById('testimonialMeta');
+  const nameField = document.getElementById('testimonial_name');
+  const titleField = document.getElementById('testimonial_title');
+  if (this.value.trim()) {
+    meta.style.display = 'block';
+    nameField.required = true;
+    titleField.required = true;
+  } else {
+    meta.style.display = 'none';
+    nameField.required = false;
+    titleField.required = false;
+  }
+});
+
+document.getElementById('evalForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Validate star ratings (all required)
+  const starGroups = ['session_1','session_2','session_3','session_4','rating_hager','rating_baraa'];
+  for (const name of starGroups) {
+    if (!this.querySelector(`input[name="${name}"]:checked`)) {
+      alert('يرجى تقييم جميع الجلسات والمدربَين.');
+      return;
+    }
+  }
+
+  // Validate at least one checkbox selected
+  if (!this.querySelector('input[name="top_benefit"]:checked')) {
+    alert('يرجى اختيار موضوع واحد على الأقل مما استفدت منه.');
+    return;
+  }
+
+  // Validate usage radio
+  if (!this.querySelector('input[name="usage"]:checked')) {
+    alert('يرجى الإجابة على سؤال كيفية استخدام ما تعلمته.');
+    return;
+  }
+
+  const btn = this.querySelector('button[type="submit"]');
+  btn.textContent = 'جاري الإرسال…';
+  btn.disabled = true;
+
+  const fd = new FormData(this);
+  const benefits = [...this.querySelectorAll('input[name="top_benefit"]:checked')]
+    .map(el => el.value).join(', ');
+  fd.delete('top_benefit');
+  fd.append('top_benefit', benefits);
+  fd.append('total_hours', '8');
+  fd.append('form_type', 'evaluation');
+  fd.append('timestamp', new Date().toISOString());
+
+  try {
+    await fetch(SCRIPT_URL, { method: 'POST', body: fd, mode: 'no-cors' });
+    this.style.display = 'none';
+    document.querySelector('.header').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  } catch {
+    btn.textContent = 'إرسال التقييم ←';
+    btn.disabled = false;
+    alert('حدث خطأ. يرجى المحاولة مرة أخرى أو التواصل معنا على info@anmat.media');
+  }
+});
+</script>
+</body>
+</html>
